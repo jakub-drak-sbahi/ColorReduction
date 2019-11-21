@@ -5,8 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:gk3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+		MinHeight="450" MinWidth="800">
     <Grid>
-        
-    </Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+			<ColumnDefinition Width="150"/>
+		</Grid.ColumnDefinitions>
+		<ScrollViewer Grid.Column="0" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Visible">
+			<Image Name="OriginalImage"/>
+		</ScrollViewer>
+		<ScrollViewer Grid.Column="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Visible">
+			
+		</ScrollViewer>
+		<StackPanel Grid.Column="2">
+			<Button Content="Load image" Name="LoadImageButton" Margin="10 10 10 10" Click="LoadImageButton_Click"/>
+			<Label Content="Number of colors:"/>
+			<TextBox Margin="10 0 10 10"/>
+			<Button Content="Convert" Name="ConvertButton" Margin="10 10 10 10"/>
+		</StackPanel>
+	</Grid>
 </Window>
