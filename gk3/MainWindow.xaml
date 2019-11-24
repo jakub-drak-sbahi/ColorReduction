@@ -1,4 +1,4 @@
-﻿<Window x:Class="gk3.MainWindow"
+﻿	<Window x:Class="gk3.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,19 +11,22 @@
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition/>
 			<ColumnDefinition/>
-			<ColumnDefinition Width="150"/>
+			<ColumnDefinition Width="170"/>
 		</Grid.ColumnDefinitions>
 		<ScrollViewer Grid.Column="0" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Visible">
-			<Image Name="OriginalImage"/>
+			<Image Name="OriginalImage" Stretch="None"/>
 		</ScrollViewer>
 		<ScrollViewer Grid.Column="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Visible">
-			
+			<Image Name="ConvertedImage" Stretch="None"/> 
 		</ScrollViewer>
 		<StackPanel Grid.Column="2">
 			<Button Content="Load image" Name="LoadImageButton" Margin="10 10 10 10" Click="LoadImageButton_Click"/>
 			<Label Content="Number of colors:"/>
-			<TextBox Margin="10 0 10 10"/>
-			<Button Content="Convert" Name="ConvertButton" Margin="10 10 10 10"/>
+			<TextBox Text="2" Name="NumberOfColors"  Margin="10 0 10 10"/>
+			<Label Content="Reduction algorithm:"  Margin="10 10 10 0"/>
+			<RadioButton Content="Error diffusion dithering" Name="ErrorDiffusionDitheringRadioButton" IsChecked="True" Margin="10 0 10 10"/>
+			<ComboBox Name="ErrorDiffusionDitheringComboBox" Margin="30 0 10 10"/>
+			<Button Content="Convert" Name="ConvertButton" Margin="10 10 10 10" Click="ConvertButton_Click"/>
 		</StackPanel>
 	</Grid>
 </Window>

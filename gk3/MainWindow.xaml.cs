@@ -23,9 +23,12 @@ namespace gk3
     public partial class MainWindow : Window
     {
         private Bitmap image;
+        private Bitmap convertedImage;
         public MainWindow()
         {
             InitializeComponent();
+            ErrorDiffusionDitheringComboBox.ItemsSource = new string[] { "Floyd and Steinberg", "Burkes", "Stucky" };
+            ErrorDiffusionDitheringComboBox.SelectedIndex = 0;
         }
 
         private void LoadImageButton_Click(object sender, RoutedEventArgs e)
@@ -38,9 +41,30 @@ namespace gk3
             if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 image = new Bitmap(fileDialog.FileName);
-                OriginalImage.Width = image.Width;
-                OriginalImage.Height = image.Height;
+                OriginalImage.MinWidth = image.Width;
+                OriginalImage.MinHeight = image.Height;
                 OriginalImage.Source = BitmapConverter.ConvertBitmapToSource(image);
+            }
+        }
+
+        private void ConvertButton_Click(object sender, RoutedEventArgs e)
+        {
+            int n;
+            int.TryParse(NumberOfColors.Text, out n);
+            if(n==0 || n<2)
+            {
+                return;
+            }
+            if(n<1)
+            {
+                n = 1;
+            }
+            if(ErrorDiffusionDitheringRadioButton.IsChecked.Value)
+            {
+                convertedImage = ErrorDiffusionDithering.ReduceColors(image, (FilterMatrix)ErrorDiffusionDitheringComboBox.SelectedIndex, n);
+                ConvertedImage.Width = convertedImage.Width;
+                ConvertedImage.Height = convertedImage.Height;
+                ConvertedImage.Source = BitmapConverter.ConvertBitmapToSource(convertedImage);
             }
         }
     }
