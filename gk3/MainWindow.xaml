@@ -17,15 +17,16 @@
 			<Image Name="OriginalImage" Stretch="None"/>
 		</ScrollViewer>
 		<ScrollViewer Grid.Column="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Visible">
-			<Image Name="ConvertedImage" Stretch="None"/> 
+			<Image Name="ConvertedImage" Stretch="None" SnapsToDevicePixels="True"/> 
 		</ScrollViewer>
 		<StackPanel Grid.Column="2">
 			<Button Content="Load image" Name="LoadImageButton" Margin="10 10 10 10" Click="LoadImageButton_Click"/>
 			<Label Content="Number of colors:"/>
 			<TextBox Text="2" Name="NumberOfColors"  Margin="10 0 10 10"/>
 			<Label Content="Reduction algorithm:"  Margin="10 10 10 0"/>
-			<RadioButton Content="Error diffusion dithering" Name="ErrorDiffusionDitheringRadioButton" IsChecked="True" Margin="10 0 10 10"/>
+			<RadioButton Content="Error diffusion dithering" Name="ErrorDiffusionDitheringRadioButton" Margin="10 0 10 10"/>
 			<ComboBox Name="ErrorDiffusionDitheringComboBox" Margin="30 0 10 10"/>
+			<RadioButton Content="Popularity algorithm" Name="PopularityAlgorithmRadioButton" IsChecked="True" Margin="10 0 10 10"/>
 			<Button Content="Convert" Name="ConvertButton" Margin="10 10 10 10" Click="ConvertButton_Click"/>
 		</StackPanel>
 	</Grid>

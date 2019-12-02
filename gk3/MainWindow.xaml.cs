@@ -41,8 +41,8 @@ namespace gk3
             if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 image = new Bitmap(fileDialog.FileName);
-                OriginalImage.MinWidth = image.Width;
-                OriginalImage.MinHeight = image.Height;
+                //OriginalImage.MinWidth = image.Width;
+                //OriginalImage.MinHeight = image.Height;
                 OriginalImage.Source = BitmapConverter.ConvertBitmapToSource(image);
             }
         }
@@ -62,10 +62,14 @@ namespace gk3
             if(ErrorDiffusionDitheringRadioButton.IsChecked.Value)
             {
                 convertedImage = ErrorDiffusionDithering.ReduceColors(image, (FilterMatrix)ErrorDiffusionDitheringComboBox.SelectedIndex, n);
-                ConvertedImage.Width = convertedImage.Width;
-                ConvertedImage.Height = convertedImage.Height;
-                ConvertedImage.Source = BitmapConverter.ConvertBitmapToSource(convertedImage);
+                //ConvertedImage.Width = convertedImage.Width;
+                //ConvertedImage.Height = convertedImage.Height;
             }
+            else if(PopularityAlgorithmRadioButton.IsChecked.Value)
+            {
+                convertedImage = PopularityAlgorithm.ReduceColors(image, n);
+            }
+            ConvertedImage.Source = BitmapConverter.ConvertBitmapToSource(convertedImage);
         }
     }
 }

@@ -8,26 +8,38 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Runtime.InteropServices;
 
 namespace gk3
 {
     static class BitmapConverter
     {
-        //public static BitmapImage ConvertBitmapToSource(System.Drawing.Bitmap bitmap)
+        //[DllImport("user32.dll")]
+        //static extern int GetSystemMetrics(int k = 12);
+
+        //public static BitmapSource ConvertBitmapToSource(System.Drawing.Bitmap bitmap)
         //{
         //    using (MemoryStream memory = new MemoryStream())
         //    {
-        //        bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Png);
+        //        bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
         //        memory.Position = 0;
         //        BitmapImage bitmapImage = new BitmapImage();
         //        bitmapImage.BeginInit();
-        //        memory.Seek(0, SeekOrigin.Begin);
         //        bitmapImage.StreamSource = memory;
         //        bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
         //        bitmapImage.EndInit();
-        //        bitmapImage.Freeze();
 
-        //        return bitmapImage;
+        //        var DPI = GetSystemMetrics() / SystemParameters.IconHeight * 96;
+        //        var scale = bitmap.HorizontalResolution / DPI;
+        //        var transform = new ScaleTransform(scale, scale);
+
+        //        TransformedBitmap transformedBitmap = new TransformedBitmap();
+        //        transformedBitmap.BeginInit();
+        //        transformedBitmap.Source = bitmapImage;
+        //        transformedBitmap.Transform = transform;
+        //        transformedBitmap.EndInit();
+
+        //        return transformedBitmap;
         //    }
         //}
 
