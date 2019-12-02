@@ -49,6 +49,8 @@ namespace gk3
 
         private void ConvertButton_Click(object sender, RoutedEventArgs e)
         {
+            if (image == null)
+                return;
             int n;
             int.TryParse(NumberOfColors.Text, out n);
             if(n==0 || n<2)
@@ -68,6 +70,10 @@ namespace gk3
             else if(PopularityAlgorithmRadioButton.IsChecked.Value)
             {
                 convertedImage = PopularityAlgorithm.ReduceColors(image, n);
+            }
+            else if (KMeansAlgorithmRadioButton.IsChecked.Value)
+            {
+                convertedImage = KMeansAlgorithm.ReduceColors(image, n);
             }
             ConvertedImage.Source = BitmapConverter.ConvertBitmapToSource(convertedImage);
         }

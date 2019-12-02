@@ -14,7 +14,7 @@ namespace gk3
         public double G { get; private set; }
         public double B { get; private set; }
 
-        public MyColor(int A, int R, int G, int B)
+        public MyColor(double A, double R, double G, double B)
         {
             this.A = A;
             this.R = R;
@@ -46,23 +46,30 @@ namespace gk3
                 G = 0;
             if (B < 0)
                 B = 0;
-            //return Color.FromArgb((int)A % 256, (int)R % 256, (int)G % 256, (int)B % 256);
-            //return Color.FromArgb((int)A, (int)R, (int)G, (int)B);
-            return Color.FromArgb((int)A>255?255:(int)A, (int)R > 255 ? 255 : (int)R, (int)G > 255 ? 255 : (int)G, (int)B > 255 ? 255 : (int)B);
+            return Color.FromArgb((int)A > 255 ? 255 : (int)A, (int)R > 255 ? 255 : (int)R, (int)G > 255 ? 255 : (int)G, (int)B > 255 ? 255 : (int)B);
         }
 
         public int Distance(MyColor color)
         {
-            return ((int)((int)A - (int)color.A)) * ((int)((int)A - (int)color.A)) + ((int)((int)R - (int)color.R)) * ((int)((int)R - (int)color.R)) + ((int)((int)G - (int)color.G)) * ((int)((int)G - (int)color.G)) + ((int)((int)B - (int)color.B)) * ((int)((int)B - (int)color.B));
+            return ((int)A - (int)color.A) * ((int)A - (int)color.A) + ((int)R - (int)color.R) * ((int)R - (int)color.R) + ((int)G - (int)color.G) * ((int)G - (int)color.G) + ((int)B - (int)color.B) * ((int)B - (int)color.B);
         }
 
         public static MyColor operator -(MyColor c1, MyColor c2)
             => new MyColor(c1.R - c2.R, c1.G - c2.G, c1.B - c2.B);
 
         public static MyColor operator +(MyColor c1, MyColor c2)
-            => new MyColor(c1.R + c2.R, c1.G + c2.G, c1.B + c2.B);
+            => new MyColor(c1.A + c2.A, c1.R + c2.R, c1.G + c2.G, c1.B + c2.B);
 
         public static MyColor operator *(MyColor c, double d)
             => new MyColor(c.R * d, c.G * d, c.B * d);
+
+        public static MyColor operator /(MyColor c, int d)
+            => new MyColor((int)c.A / d, (int)c.R / d, (int)c.G / d, (int)c.B / d);
+
+        public static bool operator ==(MyColor c1, MyColor c2)
+            => c1.A == c2.A && c1.R == c2.R && c1.G == c2.G && c1.B == c2.B;
+
+        public static bool operator !=(MyColor c1, MyColor c2)
+            => c1.A != c2.A || c1.R != c2.R || c1.G != c2.G || c1.B != c2.B;
     }
 }

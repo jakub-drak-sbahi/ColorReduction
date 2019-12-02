@@ -26,7 +26,8 @@
 			<Label Content="Reduction algorithm:"  Margin="10 10 10 0"/>
 			<RadioButton Content="Error diffusion dithering" Name="ErrorDiffusionDitheringRadioButton" Margin="10 0 10 10"/>
 			<ComboBox Name="ErrorDiffusionDitheringComboBox" Margin="30 0 10 10"/>
-			<RadioButton Content="Popularity algorithm" Name="PopularityAlgorithmRadioButton" IsChecked="True" Margin="10 0 10 10"/>
+			<RadioButton Content="Popularity algorithm" Name="PopularityAlgorithmRadioButton" Margin="10 0 10 10"/>
+			<RadioButton Content="K-Means algorithm" Name="KMeansAlgorithmRadioButton" IsChecked="True" Margin="10 0 10 10"/>
 			<Button Content="Convert" Name="ConvertButton" Margin="10 10 10 10" Click="ConvertButton_Click"/>
 		</StackPanel>
 	</Grid>
