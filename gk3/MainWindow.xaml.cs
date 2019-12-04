@@ -51,16 +51,16 @@ namespace gk3
                 return;
             int n;
             int.TryParse(NumberOfColors.Text, out n);
-            if(n==0 || n<2)
+            if(n<=0)
             {
                 return;
             }
-            if(n<1)
-            {
-                n = 1;
-            }
             if(ErrorDiffusionDitheringRadioButton.IsChecked.Value)
             {
+                if(n<2)
+                {
+                    return;
+                }
                 if(BlackAndWhiteRadioButton.IsChecked.Value)
                 {
                     convertedImage = ErrorDiffusionDithering.ReduceColors(image, (FilterMatrix)ErrorDiffusionDitheringComboBox.SelectedIndex, n, true);
