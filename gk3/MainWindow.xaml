@@ -26,10 +26,14 @@
 			<Label Content="Number of colors:"/>
 			<TextBox Text="2" Name="NumberOfColors"  Margin="10 0 10 10"/>
 			<Label Content="Reduction algorithm:"  Margin="10 10 10 0"/>
-			<RadioButton Content="Error diffusion dithering" Name="ErrorDiffusionDitheringRadioButton" Margin="10 0 10 10"/>
+			<RadioButton Content="Error diffusion dithering" Name="ErrorDiffusionDitheringRadioButton" IsChecked="True" Margin="10 0 10 10"/>
+			<StackPanel>
+				<RadioButton Name="BlackAndWhiteRadioButton" Content="Black and white" IsChecked="True" Margin="30 0 10 10"/>
+				<RadioButton Name="ColorRadioButton" Content="Color" Margin="30 0 10 10"/>
+			</StackPanel>
 			<ComboBox Name="ErrorDiffusionDitheringComboBox" Margin="30 0 10 10"/>
 			<RadioButton Content="Popularity algorithm" Name="PopularityAlgorithmRadioButton" Margin="10 0 10 10"/>
-			<RadioButton Content="K-Means algorithm" Name="KMeansAlgorithmRadioButton" IsChecked="True" Margin="10 0 10 10"/>
+			<RadioButton Content="K-Means algorithm" Name="KMeansAlgorithmRadioButton" Margin="10 0 10 10"/>
 			<Button Content="Convert" Name="ConvertButton" Margin="10 10 10 10" Click="ConvertButton_Click"/>
 		</StackPanel>
 	</Grid>
