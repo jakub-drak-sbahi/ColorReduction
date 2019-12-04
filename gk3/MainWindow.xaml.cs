@@ -63,7 +63,7 @@ namespace gk3
             }
             if(ErrorDiffusionDitheringRadioButton.IsChecked.Value)
             {
-                convertedImage = ErrorDiffusionDithering.ReduceColors(image, (FilterMatrix)ErrorDiffusionDitheringComboBox.SelectedIndex, n);
+                convertedImage = ErrorDiffusionDithering.ReduceColors(image, (FilterMatrix)ErrorDiffusionDitheringComboBox.SelectedIndex, n, true);
                 //ConvertedImage.Width = convertedImage.Width;
                 //ConvertedImage.Height = convertedImage.Height;
             }

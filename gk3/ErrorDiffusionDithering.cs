@@ -11,7 +11,7 @@ namespace gk3
     public enum FilterMatrix { FloydAndSteinberg, Burkes, Stucky }
     static class ErrorDiffusionDithering
     {
-        public static Bitmap ReduceColors(Bitmap image, FilterMatrix filterMatrix, int numberOfColors)
+        public static Bitmap ReduceColors(Bitmap image, FilterMatrix filterMatrix, int numberOfColors, bool blackAndWhite)
         {
             double[,] filter = new double[1, 1];
             switch (filterMatrix)
@@ -78,7 +78,7 @@ namespace gk3
                 for (int x = 0; x < image.Width; ++x)
                 {
                     MyColor oldPixel = table[x, y];
-                    MyColor K = Approximate(table[x, y].ToColor(), numberOfColors);
+                    MyColor K = Approximate(table[x, y].ToColor(), numberOfColors, blackAndWhite);
                     table[x, y] = K;
                     MyColor error = oldPixel - table[x, y];
                     for (int i = 0; i < filter.GetLength(0); ++i)
@@ -103,16 +103,25 @@ namespace gk3
             return _return;
         }
 
-        private static MyColor Approximate(Color color, int numberOfColors)
+        private static MyColor Approximate(Color color, int numberOfColors, bool blackAndWhite)
         {
             numberOfColors -= 1;
             double period = 255.0 / numberOfColors;
-            double rn = color.R / (double)period;
-            double gn = color.G / (double)period;
-            double bn = color.B / (double)period;
+            double rn, gn, bn;
+            if (blackAndWhite)
+            {
+                double n = (color.R + color.G + color.B) / 3;
+                rn = gn = bn = n / (double)period;
+            }
+            else
+            {
+                rn = color.R / (double)period;
+                gn = color.G / (double)period;
+                bn = color.B / (double)period;                
+            }
             double R = rn - (int)rn < 0.5 ? (int)rn * period : ((int)rn + 1) * period;
             double G = gn - (int)gn < 0.5 ? (int)gn * period : ((int)gn + 1) * period;
-            double B = bn - (int)bn < 0.5 ? (int)bn * period : ((int)bn + 1) * period;
+            double B = bn - (int)bn < 0.5 ? (int)bn * period : ((int)bn + 1) * period;            
             return new MyColor(R, G, B);
         }
     }
